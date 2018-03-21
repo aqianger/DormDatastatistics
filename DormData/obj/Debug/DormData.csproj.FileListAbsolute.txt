@@ -1,0 +1,11 @@
+D:\project\esquel\DormWebApi\DormData\bin\Debug\DormData.dll.config
+D:\project\esquel\DormWebApi\DormData\bin\Debug\DormData.dll
+D:\project\esquel\DormWebApi\DormData\bin\Debug\DormData.pdb
+D:\project\esquel\DormWebApi\DormData\bin\Debug\EntityFramework.dll
+D:\project\esquel\DormWebApi\DormData\bin\Debug\EntityFramework.SqlServer.dll
+D:\project\esquel\DormWebApi\DormData\bin\Debug\EntityFramework.xml
+D:\project\esquel\DormWebApi\DormData\bin\Debug\EntityFramework.SqlServer.xml
+D:\project\esquel\DormWebApi\DormData\obj\Debug\DormData.csprojResolveAssemblyReference.cache
+D:\project\esquel\DormWebApi\DormData\obj\Debug\DormData.csproj.CoreCompileInputs.cache
+D:\project\esquel\DormWebApi\DormData\obj\Debug\DormData.dll
+D:\project\esquel\DormWebApi\DormData\obj\Debug\DormData.pdb

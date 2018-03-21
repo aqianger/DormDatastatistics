@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HotelDataTestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="HotelDataTestEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BookingPurpose" EntityType="HotelDataTestModel.BookingPurpose" />
+    <EntitySet Name="CostCenter" EntityType="HotelDataTestModel.CostCenter" />
+    <EntitySet Name="Factory" EntityType="HotelDataTestModel.Factory" />
+    <EntitySet Name="maintenancing" EntityType="HotelDataTestModel.maintenancing" />
+    <EntitySet Name="MyList" EntityType="HotelDataTestModel.MyList" />
+    <EntitySet Name="FactoryCode" EntityType="HotelDataTestModel.FactoryCode" />
+    <EntitySet Name="Dorm" EntityType="HotelDataTestModel.Dorm" />
+    <EntitySet Name="Booking" EntityType="HotelDataTestModel.Booking" />
+    <EntitySet Name="sysdiagrams" EntityType="HotelDataTestModel.sysdiagrams" />
+    <AssociationSet Name="FK_Booking_BookingPurpose" Association="HotelDataTestModel.FK_Booking_BookingPurpose">
+      <End Role="BookingPurpose" EntitySet="BookingPurpose" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Booking_Factory" Association="HotelDataTestModel.FK_Booking_Factory">
+      <End Role="Factory" EntitySet="Factory" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+    <EntitySet Name="BookingDetails" EntityType="HotelDataTestModel.BookingDetails" />
+    <EntitySet Name="Hotel" EntityType="HotelDataTestModel.Hotel" />
+    <EntitySet Name="employee" EntityType="HotelDataTestModel.employee" />
+    <EntitySet Name="DormRoomStatus" EntityType="HotelDataTestModel.DormRoomStatus" />
+    <EntitySet Name="DormInDates" EntityType="HotelDataTestModel.DormInDates" />
+    <AssociationSet Name="FK_DormInDates_DormInDates" Association="HotelDataTestModel.FK_DormInDates_DormInDates">
+      <End Role="DormInDates" EntitySet="DormInDates" />
+      <End Role="DormInDates1" EntitySet="DormInDates" />
+    </AssociationSet>
+    <EntitySet Name="DormMemo" EntityType="HotelDataTestModel.DormMemo" />
+    <EntitySet Name="StatisticsByDay" EntityType="HotelDataTestModel.StatisticsByDay" />
+    <FunctionImport Name="StatisticData">
+      <Parameter Name="startDate" Mode="In" Type="DateTime" />
+      <Parameter Name="endDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <EntitySet Name="DormAllocation" EntityType="HotelDataTestModel.DormAllocation" />
+    <AssociationSet Name="FK_DormAllocation_Booking" Association="HotelDataTestModel.FK_DormAllocation_Booking">
+      <End Role="Booking" EntitySet="Booking" />
+      <End Role="DormAllocation" EntitySet="DormAllocation" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="BookingPurpose">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NACode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dbedited" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Booking" Relationship="HotelDataTestModel.FK_Booking_BookingPurpose" FromRole="BookingPurpose" ToRole="Booking" />
+  </EntityType>
+  <EntityType Name="CostCenter">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="DepartmentCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DepartmentCode_x002d_CH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EditorId" Type="Int32" Nullable="false" />
+    <Property Name="FactoryCodeId" Type="Int32" Nullable="false" />
+    <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="SubFactory" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dbedited" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Factory">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Currency" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="DestinationCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="IsDestination" Type="Boolean" />
+    <Property Name="Language" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Modified" Type="DateTime" Precision="3" />
+    <Property Name="PostCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TimeZone" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="Title" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="dbedited" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Booking" Relationship="HotelDataTestModel.FK_Booking_Factory" FromRole="Factory" ToRole="Booking" />
+  </EntityType>
+  <EntityType Name="maintenancing">
+    <Key>
+      <PropertyRef Name="mtdate" />
+      <PropertyRef Name="DormCode" />
+    </Key>
+    <Property Name="mtdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DormCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="dbedited" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="MyList">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OData__x0079_jb6" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="shgk" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dbedited" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="FactoryCode">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="dbedited" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Dorm">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="DormCodeId" Type="Int32" Nullable="false" />
+    <Property Name="DormCodeText" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dbedited" Type="DateTime" Precision="3" />
+    <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="FactoryCodeId" Type="Int32" />
+    <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Booking">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="RequestorFactoryCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RequestorDepartmentCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RequestorName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CheckinDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CheckoutDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="AllGuestName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="StatusForDetailsUsed" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="dbedited" Type="DateTime" Precision="3" />
+    <Property Name="AdminRemarks" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="AuthorId" Type="Int32" Nullable="false" />
+    <Property Name="BookingPurposeCodeId" Type="Int32" Nullable="false" />
+    <Property Name="ChargeValueCalculatedDate" Type="DateTime" Precision="3" />
+    <Property Name="EditorId" Type="Int32" />
+    <Property Name="FactoryCodeId" Type="Int32" Nullable="false" />
+    <Property Name="IsUpdate" Type="Boolean" Nullable="false" />
+    <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NumberOfRooms" Type="Int32" Nullable="false" />
+    <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="StaffEmails" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="StaffGrade" Type="Boolean" />
+    <Property Name="IsDorm" Type="Boolean" />
+    <NavigationProperty Name="BookingPurpose" Relationship="HotelDataTestModel.FK_Booking_BookingPurpose" FromRole="Booking" ToRole="BookingPurpose" />
+    <NavigationProperty Name="Factory" Relationship="HotelDataTestModel.FK_Booking_Factory" FromRole="Booking" ToRole="Factory" />
+    <NavigationProperty Name="DormAllocation" Relationship="HotelDataTestModel.FK_DormAllocation_Booking" FromRole="Booking" ToRole="DormAllocation" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Booking_BookingPurpose">
+    <End Type="HotelDataTestModel.BookingPurpose" Role="BookingPurpose" Multiplicity="1" />
+    <End Type="HotelDataTestModel.Booking" Role="Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookingPurpose">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="BookingPurposeCodeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Booking_Factory">
+    <End Type="HotelDataTestModel.Factory" Role="Factory" Multiplicity="1" />
+    <End Type="HotelDataTestModel.Booking" Role="Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Factory">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="FactoryCodeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="BookingDetails">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Guest" Type="Boolean" />
+    <Property Name="TravelDocumentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="CheckinDate" Type="DateTime" Precision="3" />
+    <Property Name="CheckoutDate" Type="DateTime" Precision="3" />
+    <Property Name="TravelType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OfficeEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OfficeNameId" Type="Int32" />
+    <Property Name="OfficeNameText" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ReferenceNumberId" Type="Int32" />
+    <Property Name="CostCenterCodeId" Type="Int32" />
+    <Property Name="FactoryCodeId" Type="Int32" />
+    <Property Name="DepartmentName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DetailFactoryCodeId" Type="Int32" />
+    <Property Name="StaffTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CancelFlag" Type="Boolean" />
+    <Property Name="CancelSettled" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ActualCheckinDate" Type="DateTime" Precision="3" />
+    <Property Name="ActualCheckoutDate" Type="DateTime" Precision="3" />
+    <Property Name="NumberOfRoomNights" Type="Byte" />
+    <Property Name="SubFactoryId" Type="Int32" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ChargeTypeId" Type="Int32" />
+    <Property Name="ChargeValue" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ChargedCancel" Type="Boolean" Nullable="false" />
+    <Property Name="AuthorId" Type="Int32" />
+    <Property Name="dbedited" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsDorm" Type="Boolean" Nullable="false" />
+    <Property Name="Modified" Type="DateTime" Precision="3" />
+    <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="StaffDepartment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Alloc_x0020_Flag" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Hotel">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CancellationTime" Type="Int32" />
+    <Property Name="CurrentPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="FactoryCodeId" Type="Int32" />
+    <Property Name="GradeId" Type="Int32" />
+    <Property Name="HighSeasonPrice" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="HotelLocalAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HotelLocalName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsDorm" Type="Boolean" Nullable="false" />
+    <Property Name="LowSeasonPrice" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Modified" Type="DateTime" Precision="3" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="PublicHolidayPrice" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="RoomDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="dbedited" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="employee">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="FullName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OfficeLocation" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="JobTitle" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Department" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dbedited" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="SipAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="DormRoomStatus">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="CompleteDate" Type="DateTime" Precision="3" />
+    <Property Name="DormIDId" Type="Int32" Nullable="false" />
+    <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="RecordDate" Type="DateTime" Precision="3" />
+    <Property Name="Remark" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dbedited" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="DormInDates">
+    <Key>
+      <PropertyRef Name="Date" />
+      <PropertyRef Name="DormNumerId" />
+    </Key>
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DAID" Type="Int32" Nullable="false" />
+    <Property Name="DormNumerId" Type="Int32" Nullable="false" />
+    <Property Name="dbedited" Type="DateTime" Precision="3" />
+    <Property Name="DormCodeID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DormInDates1" Relationship="HotelDataTestModel.FK_DormInDates_DormInDates" FromRole="DormInDates" ToRole="DormInDates1" />
+    <NavigationProperty Name="DormInDates2" Relationship="HotelDataTestModel.FK_DormInDates_DormInDates" FromRole="DormInDates1" ToRole="DormInDates" />
+  </EntityType>
+  <Association Name="FK_DormInDates_DormInDates">
+    <End Type="HotelDataTestModel.DormInDates" Role="DormInDates" Multiplicity="1" />
+    <End Type="HotelDataTestModel.DormInDates" Role="DormInDates1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="DormInDates">
+        <PropertyRef Name="Date" />
+        <PropertyRef Name="DormNumerId" />
+      </Principal>
+      <Dependent Role="DormInDates1">
+        <PropertyRef Name="Date" />
+        <PropertyRef Name="DormNumerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="DormMemo">
+    <Key>
+      <PropertyRef Name="Date" />
+      <PropertyRef Name="DormNumerId" />
+    </Key>
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DormNumerId" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="link" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="created" Type="DateTime" Precision="3" />
+    <Property Name="userid" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StatisticsByDay">
+    <Key>
+      <PropertyRef Name="start" />
+      <PropertyRef Name="DormCodeId" />
+    </Key>
+    <Property Name="start" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DormCodeId" Type="Int32" Nullable="false" />
+    <Property Name="guestnum" Type="Int32" Nullable="false" />
+    <Property Name="roomnum" Type="Int32" Nullable="false" />
+    <Property Name="maintenance" Type="Int32" />
+    <Property Name="edittime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="DormAllocation">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="ReferenceNumberId" Type="Int32" Nullable="false" />
+    <Property Name="FactoryCodeId" Type="Int32" />
+    <Property Name="OfficeName" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="BookingDetailsIDId" Type="Int32" />
+    <Property Name="DormNumberId" Type="Int32" />
+    <Property Name="CheckinStaffId" Type="Int32" />
+    <Property Name="dbedited" Type="DateTime" Precision="3" />
+    <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="Booking" Relationship="HotelDataTestModel.FK_DormAllocation_Booking" FromRole="DormAllocation" ToRole="Booking" />
+  </EntityType>
+  <Association Name="FK_DormAllocation_Booking">
+    <End Type="HotelDataTestModel.Booking" Role="Booking" Multiplicity="1" />
+    <End Type="HotelDataTestModel.DormAllocation" Role="DormAllocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Booking">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DormAllocation">
+        <PropertyRef Name="ReferenceNumberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

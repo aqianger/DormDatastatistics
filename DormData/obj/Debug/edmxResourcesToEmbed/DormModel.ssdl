@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HotelDataTestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Booking">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="RequestorFactoryCode" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="RequestorDepartmentCode" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="RequestorName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CheckinDate" Type="datetime" Nullable="false" />
+    <Property Name="CheckoutDate" Type="datetime" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="AllGuestName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="StatusForDetailsUsed" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="dbedited" Type="datetime" />
+    <Property Name="AdminRemarks" Type="varchar" MaxLength="100" />
+    <Property Name="AuthorId" Type="int" Nullable="false" />
+    <Property Name="BookingPurposeCodeId" Type="int" Nullable="false" />
+    <Property Name="ChargeValueCalculatedDate" Type="datetime" />
+    <Property Name="EditorId" Type="int" />
+    <Property Name="FactoryCodeId" Type="int" Nullable="false" />
+    <Property Name="IsUpdate" Type="bit" Nullable="false" />
+    <Property Name="Modified" Type="datetime" Nullable="false" />
+    <Property Name="NumberOfRooms" Type="int" Nullable="false" />
+    <Property Name="Remarks" Type="varchar" MaxLength="100" />
+    <Property Name="StaffEmails" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="StaffGrade" Type="bit" />
+    <Property Name="IsDorm" Type="bit" />
+  </EntityType>
+  <EntityType Name="BookingDetails">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Guest" Type="bit" />
+    <Property Name="TravelDocumentName" Type="varchar" MaxLength="50" />
+    <Property Name="Gender" Type="varchar" MaxLength="10" />
+    <Property Name="CheckinDate" Type="datetime" />
+    <Property Name="CheckoutDate" Type="datetime" />
+    <Property Name="TravelType" Type="varchar" MaxLength="50" />
+    <Property Name="OfficeEmail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="OfficeNameId" Type="int" />
+    <Property Name="OfficeNameText" Type="varchar" MaxLength="50" />
+    <Property Name="ReferenceNumberId" Type="int" />
+    <Property Name="CostCenterCodeId" Type="int" />
+    <Property Name="FactoryCodeId" Type="int" />
+    <Property Name="DepartmentName" Type="varchar" MaxLength="100" />
+    <Property Name="DetailFactoryCodeId" Type="int" />
+    <Property Name="StaffTitle" Type="varchar" MaxLength="100" />
+    <Property Name="CancelFlag" Type="bit" />
+    <Property Name="CancelSettled" Type="varchar" MaxLength="10" />
+    <Property Name="ActualCheckinDate" Type="datetime" />
+    <Property Name="ActualCheckoutDate" Type="datetime" />
+    <Property Name="NumberOfRoomNights" Type="tinyint" />
+    <Property Name="SubFactoryId" Type="int" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="ChargeTypeId" Type="int" />
+    <Property Name="ChargeValue" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="ChargedCancel" Type="bit" Nullable="false" />
+    <Property Name="AuthorId" Type="int" />
+    <Property Name="dbedited" Type="datetime" Nullable="false" />
+    <Property Name="IsDorm" Type="bit" Nullable="false" />
+    <Property Name="Modified" Type="datetime" />
+    <Property Name="Remarks" Type="varchar" MaxLength="100" />
+    <Property Name="StaffDepartment" Type="varchar" MaxLength="50" />
+    <Property Name="Title" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Alloc_x0020_Flag" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BookingPurpose">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Modified" Type="datetime" Nullable="false" />
+    <Property Name="NACode" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="dbedited" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CostCenter">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="DepartmentCode" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DepartmentCode_x002d_CH" Type="varchar" MaxLength="50" />
+    <Property Name="EditorId" Type="int" Nullable="false" />
+    <Property Name="FactoryCodeId" Type="int" Nullable="false" />
+    <Property Name="Modified" Type="datetime" Nullable="false" />
+    <Property Name="SubFactory" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="dbedited" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Dorm">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="DormCodeId" Type="int" Nullable="false" />
+    <Property Name="DormCodeText" Type="varchar" MaxLength="50" />
+    <Property Name="dbedited" Type="datetime" />
+    <Property Name="Price" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="FactoryCodeId" Type="int" />
+    <Property Name="Modified" Type="datetime" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DormAllocation">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="ReferenceNumberId" Type="int" Nullable="false" />
+    <Property Name="FactoryCodeId" Type="int" />
+    <Property Name="OfficeName" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="BookingDetailsIDId" Type="int" />
+    <Property Name="DormNumberId" Type="int" />
+    <Property Name="CheckinStaffId" Type="int" />
+    <Property Name="dbedited" Type="datetime" />
+    <Property Name="Modified" Type="datetime" Nullable="false" />
+    <Property Name="Price" Type="money" />
+  </EntityType>
+  <EntityType Name="DormInDates">
+    <Key>
+      <PropertyRef Name="Date" />
+      <PropertyRef Name="DormNumerId" />
+    </Key>
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="DAID" Type="int" Nullable="false" />
+    <Property Name="DormNumerId" Type="int" Nullable="false" />
+    <Property Name="dbedited" Type="datetime" />
+    <Property Name="DormCodeID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DormMemo">
+    <Key>
+      <PropertyRef Name="Date" />
+      <PropertyRef Name="DormNumerId" />
+    </Key>
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="DormNumerId" Type="int" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="100" />
+    <Property Name="link" Type="varchar" MaxLength="200" />
+    <Property Name="created" Type="datetime" />
+    <Property Name="userid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DormRoomStatus">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="CompleteDate" Type="datetime" />
+    <Property Name="DormIDId" Type="int" Nullable="false" />
+    <Property Name="Modified" Type="datetime" Nullable="false" />
+    <Property Name="RecordDate" Type="datetime" />
+    <Property Name="Remark" Type="varchar" MaxLength="1000" />
+    <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="dbedited" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="employee">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="FullName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="OfficeLocation" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="JobTitle" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Department" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="dbedited" Type="datetime" Nullable="false" />
+    <Property Name="SipAddress" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Factory">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="City" Type="varchar" MaxLength="50" />
+    <Property Name="Country" Type="varchar" MaxLength="50" />
+    <Property Name="Currency" Type="varchar" MaxLength="10" />
+    <Property Name="DestinationCode" Type="varchar" MaxLength="20" />
+    <Property Name="IsDestination" Type="bit" />
+    <Property Name="Language" Type="varchar" MaxLength="10" />
+    <Property Name="Modified" Type="datetime" />
+    <Property Name="PostCode" Type="varchar" MaxLength="20" />
+    <Property Name="TimeZone" Type="varchar" MaxLength="2" />
+    <Property Name="Title" Type="varchar" MaxLength="20" />
+    <Property Name="dbedited" Type="datetime" />
+  </EntityType>
+  <EntityType Name="FactoryCode">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Modified" Type="datetime" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="dbedited" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Hotel">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="CancellationTime" Type="int" />
+    <Property Name="CurrentPrice" Type="money" Nullable="false" />
+    <Property Name="FactoryCodeId" Type="int" />
+    <Property Name="GradeId" Type="int" />
+    <Property Name="HighSeasonPrice" Type="money" />
+    <Property Name="HotelLocalAddress" Type="varchar" MaxLength="50" />
+    <Property Name="HotelLocalName" Type="varchar" MaxLength="50" />
+    <Property Name="IsDorm" Type="bit" Nullable="false" />
+    <Property Name="LowSeasonPrice" Type="money" />
+    <Property Name="Modified" Type="datetime" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="30" />
+    <Property Name="PublicHolidayPrice" Type="money" />
+    <Property Name="Remarks" Type="varchar" MaxLength="100" />
+    <Property Name="RoomDescription" Type="varchar" MaxLength="500" />
+    <Property Name="Title" Type="varchar" MaxLength="100" />
+    <Property Name="dbedited" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="maintenancing">
+    <Key>
+      <PropertyRef Name="mtdate" />
+      <PropertyRef Name="DormCode" />
+    </Key>
+    <Property Name="mtdate" Type="date" Nullable="false" />
+    <Property Name="DormCode" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="dbedited" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MyList">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Modified" Type="datetime" Nullable="false" />
+    <Property Name="OData__x0079_jb6" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="shgk" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="dbedited" Type="datetime" />
+  </EntityType>
+  <EntityType Name="StatisticsByDay">
+    <Key>
+      <PropertyRef Name="start" />
+      <PropertyRef Name="DormCodeId" />
+    </Key>
+    <Property Name="start" Type="date" Nullable="false" />
+    <Property Name="DormCodeId" Type="int" Nullable="false" />
+    <Property Name="guestnum" Type="int" Nullable="false" />
+    <Property Name="roomnum" Type="int" Nullable="false" />
+    <Property Name="maintenance" Type="int" />
+    <Property Name="edittime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Booking_BookingPurpose">
+    <End Role="BookingPurpose" Type="Self.BookingPurpose" Multiplicity="1" />
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookingPurpose">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="BookingPurposeCodeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Booking_Factory">
+    <End Role="Factory" Type="Self.Factory" Multiplicity="1" />
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Factory">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="FactoryCodeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DormAllocation_Booking">
+    <End Role="Booking" Type="Self.Booking" Multiplicity="1" />
+    <End Role="DormAllocation" Type="Self.DormAllocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Booking">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DormAllocation">
+        <PropertyRef Name="ReferenceNumberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DormInDates_DormInDates">
+    <End Role="DormInDates" Type="Self.DormInDates" Multiplicity="1" />
+    <End Role="DormInDates1" Type="Self.DormInDates" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="DormInDates">
+        <PropertyRef Name="Date" />
+        <PropertyRef Name="DormNumerId" />
+      </Principal>
+      <Dependent Role="DormInDates1">
+        <PropertyRef Name="Date" />
+        <PropertyRef Name="DormNumerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="StatisticData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="startDate" Type="datetime" Mode="In" />
+    <Parameter Name="endDate" Type="datetime" Mode="In" />
+  </Function>
+  <EntityContainer Name="HotelDataTestModelStoreContainer">
+    <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BookingDetails" EntityType="Self.BookingDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BookingPurpose" EntityType="Self.BookingPurpose" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CostCenter" EntityType="Self.CostCenter" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Dorm" EntityType="Self.Dorm" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DormAllocation" EntityType="Self.DormAllocation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DormInDates" EntityType="Self.DormInDates" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DormMemo" EntityType="Self.DormMemo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DormRoomStatus" EntityType="Self.DormRoomStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="employee" EntityType="Self.employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Factory" EntityType="Self.Factory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FactoryCode" EntityType="Self.FactoryCode" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Hotel" EntityType="Self.Hotel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="maintenancing" EntityType="Self.maintenancing" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MyList" EntityType="Self.MyList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StatisticsByDay" EntityType="Self.StatisticsByDay" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Booking_BookingPurpose" Association="Self.FK_Booking_BookingPurpose">
+      <End Role="BookingPurpose" EntitySet="BookingPurpose" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Booking_Factory" Association="Self.FK_Booking_Factory">
+      <End Role="Factory" EntitySet="Factory" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DormAllocation_Booking" Association="Self.FK_DormAllocation_Booking">
+      <End Role="Booking" EntitySet="Booking" />
+      <End Role="DormAllocation" EntitySet="DormAllocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DormInDates_DormInDates" Association="Self.FK_DormInDates_DormInDates">
+      <End Role="DormInDates" EntitySet="DormInDates" />
+      <End Role="DormInDates1" EntitySet="DormInDates" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
